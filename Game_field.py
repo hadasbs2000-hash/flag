@@ -28,16 +28,11 @@ def random_mines_in_grid():
             #then make these cells occupied(??) or it already checks it
 
 def find_flag_indexes():
-    #רשימה של האינדקסים שהיא שם
     flag_index=[]
     for row in range(consts.FLAG_ROWS,0,-1):
         for col in range(consts.FLAG_COLS,0,-1):
             flag_index.append([row,col])
     return flag_index
-
-
-def find_mines_indexes():
-    pass
 
 def draw():
     for row in field_grid:
@@ -45,3 +40,7 @@ def draw():
             if image in cell:#אם יש תמונה כלומר את המוקש במיקום הזה אז לצייר אותו על המסך
                 Screen.draw_mine()
                 #גם דגל וחייל פה? ההדפסה?
+
+
+def find_mines_indexes():
+    pass
