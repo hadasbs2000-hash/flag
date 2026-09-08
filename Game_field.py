@@ -1,11 +1,7 @@
 from flag import consts
 import pygame
 import random
-<<<<<<< HEAD
 import Screen
-=======
-import solider
->>>>>>> 6e297093727063732fae399a0bb7a4acc628e9d5
 
 field_grid=[]
 flag_row = consts.BOARD_ROWS - consts.FLAG_ROWS
@@ -17,9 +13,6 @@ def create_empty_grid():
         field_grid.append([])
         for j in range(consts.BOARD_COLS):
             field_grid.append([])
-def put_flag():
-    pass
-
 
 def random_mines_in_grid():
     rnd_row=random.randint(0,consts.BOARD_ROWS)
@@ -35,10 +28,16 @@ def random_mines_in_grid():
             #then make these cells occupied(??) or it already checks it
 
 def find_flag_indexes():
-    pass
+    #רשימה של האינדקסים שהיא שם
+    flag_index=[]
+    for row in range(consts.FLAG_ROWS,0,-1):
+        for col in range(consts.FLAG_COLS,0,-1):
+            flag_index.append([row,col])
+    return flag_index
+
+
 def find_mines_indexes():
     pass
-<<<<<<< HEAD
 
 def draw():
     for row in field_grid:
@@ -46,8 +45,3 @@ def draw():
             if image in cell:#אם יש תמונה כלומר את המוקש במיקום הזה אז לצייר אותו על המסך
                 Screen.draw_mine()
                 #גם דגל וחייל פה? ההדפסה?
-=======
-def create_grid():
-    pass
-
->>>>>>> 6e297093727063732fae399a0bb7a4acc628e9d5
