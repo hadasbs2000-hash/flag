@@ -1,8 +1,11 @@
 from flag import consts
 import pygame
 import random
+import Screen
 
 field_grid=[]
+flag_row = consts.BOARD_ROWS - consts.FLAG_ROWS
+flag_col = consts.BOARD_COLS - consts.FLAG_COLS
 
 def create_empty_grid():
     global field_grid
@@ -21,10 +24,17 @@ def random_mines_in_grid():
             if field_grid[rnd_row][j+rnd_col]=="":#if its empty
                 count+=1
         if count==3:
-            field_grid[rnd_row].insert(rnd_col,)#mine!!!! and do it 3 times)
+            field_grid[rnd_row].insert(rnd_col,)#add the mine!!!! and do it 3 times)
             #then make these cells occupied(??) or it already checks it
 
 def find_flag_indexes():
     pass
 def find_mines_indexes():
     pass
+
+def draw():
+    for row in field_grid:
+        for cell in row:
+            if image in cell:#אם יש תמונה כלומר את המוקש במיקום הזה אז לצייר אותו על המסך
+                Screen.draw_mine()
+                #גם דגל וחייל פה? ההדפסה?

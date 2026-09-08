@@ -1,5 +1,7 @@
+import Game_field
 import consts
 import pygame
+import Screen
 
 state = {
     "solider_index":[0,0],
