@@ -1,6 +1,7 @@
 from flag import consts
 import pygame
 import random
+import solider
 
 field_grid=[]
 
@@ -10,6 +11,9 @@ def create_empty_grid():
         field_grid.append([])
         for j in range(consts.BOARD_COLS):
             field_grid.append([])
+def put_flag():
+    pass
+
 
 def random_mines_in_grid():
     rnd_row=random.randint(0,consts.BOARD_ROWS)
@@ -28,3 +32,6 @@ def find_flag_indexes():
     pass
 def find_mines_indexes():
     pass
+def create_grid():
+    pass
+
