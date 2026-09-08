@@ -9,7 +9,7 @@ state = {
 
 def main():
     pygame.init()
-    game_fild.create()
+    game_field.create()
 
     while state["is_window_open"]:
 
