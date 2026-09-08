@@ -2,11 +2,9 @@ import Game_field
 import consts
 import Game_field
 import pygame
-<<<<<<< HEAD
 import Screen
-=======
 import soldier
->>>>>>> 6e297093727063732fae399a0bb7a4acc628e9d5
+
 
 state = {
     "soldier_index":[0,0],
