@@ -2,6 +2,7 @@ import pygame
 import random
 import consts
 import Game_field
+import keyboard
 
 
 BOARD_ROWS = 25
@@ -78,9 +79,10 @@ def run_screen():
     # pygame.init()
     grass_img = pygame.transform.scale(pygame.image.load(r"C:\Users\jbt\PycharmProjects\flag\bin\grass.png"), (50, 30))
     # לעשות את הערכים בקבועים
-    blit_grass(grass_location(grass_img), pygame.image.load(r"C:\Users\jbt\PycharmProjects\flag\bin\grass.png"))
+    blit_grass(grass_location(grass_img), grass_img)
     drow_flag()
-    #drow_soldier(screen,[0,0])
+    drow_soldier([0,0])
+    pygame.display.flip()
     # return screen
 
 
@@ -114,15 +116,23 @@ def drow_mines(mine_index_list):
 def run_dark_screen():
     # screen=dark_screen_background()
     dark_screen_background()
-    # index_list = [[0, 0], [5, 5], [7, 7], [10, 10], [20, 20]]#change!!!!
-    # drow_mines(index_list)
+    index_list = [[0, 0], [5, 5], [7, 7], [10, 10], [20, 20]]#change!!!!
+    drow_mines(index_list)
     drow_soldier([0, 0])
     pygame.display.flip()
 
-run_dark_screen()
+def is_pressed_enter():
+    if keyboard.read_key() == key.:
+run_screen()
 # Variable to keep our game loop running
 running = True
 
+
+print("press enter")
+var = getkey()
+
+if var == keys.ENTER:
+  print("You pressed enter")
 
 # game loop
 while running:
