@@ -2,11 +2,8 @@ import Game_field
 import consts
 import Game_field
 import pygame
-<<<<<<< HEAD
 import Screen
-=======
 import soldier
->>>>>>> 6e297093727063732fae399a0bb7a4acc628e9d5
 
 state = {
     "soldier_index":[0,0],
@@ -16,27 +13,30 @@ state = {
 
 }
 
+
 def main():
     pygame.init()
-    Game_field.create_grid()
-
+    Screen.run_screen()
+    Game_field.create_empty_grid()
     while state["is_window_open"]:
 
         handle_user_events()
         if is_lose(state["soldier_index"]):
             state["state"]=consts.LOSE_STATE
+    # Screen.run_dark_screen()
+    pygame.display.flip()
+
+
 
 
 
 def handle_user_events():
     for event in pygame.event.get():
-
         if event.type == pygame.QUIT:
             state["is_window_open"] = False
 
         elif state["state"] != consts.RUNNING_STATE:
             continue
-
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w:
                 if soldier.is_in_grid([state["soldier_index"][0],state["soldier_index"][1]+1]):
