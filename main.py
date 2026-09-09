@@ -4,8 +4,6 @@ import Game_field
 import pygame
 import Screen
 import soldier
-
-
 state = {
     "soldier_index":[0,0],
     #The soldier's left corner
@@ -48,23 +46,23 @@ def handle_user_events():
             elif event.key == pygame.K_d:
                 if soldier.is_in_grid([state["soldier_index"][0]+1, state["soldier_index"][1]]):
                     state["soldier_index"][0] += 1
-            elif event.key==pygame.K_KP_ENTER:
-        #מראים את המסך עם הרשת
+            elif event.key == pygame.K_KP_ENTER:
+                # מראים את המסך עם הרשת
                 pass
 
 
-
 def is_lose(soldier_index):
-    index_list=soldier.get_feet(soldier_index)
+    index_list = soldier.get_feet(soldier_index)
     for index in index_list:
         if index in Game_field.find_flag_indexes():
             return True
     return False
 
+
 def is_win(soldier_index):
-   index_list=soldier.get_feet(soldier_index)
+
+   index_list = soldier.get_feet(soldier_index)
    for index in index_list:
        if index in Game_field.find_mines_indexes():
            return True
    return False
-
