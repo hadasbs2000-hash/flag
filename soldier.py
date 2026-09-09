@@ -1,8 +1,8 @@
 import pygame.image
-
 import consts
-def create_soldier():
-    pygame.image.load("soldier.py")
+soldier_img = pygame.transform.scale(pygame.image.load("bin/soldier.png"),
+                                         ( consts.SOLDIER_ROWS * consts.CELL_SIZE, consts.SOLDIER_COLS * consts.CELL_SIZE))
+import consts
 
 def get_index_matrix(index):
     matrix=[]
@@ -14,10 +14,10 @@ def get_index_matrix(index):
 
 def is_in_grid(soldier_index):
     index_matrix = get_index_matrix(soldier_index)
-    for row in range(len(index_matrix)):
-        for col in range(len(soldier_index)[row]):
-            if row >= consts.BOARD_ROWS or col >= consts.BOARD_COLS:
-                return False
+    """for inex in range(len(index_matrix)):
+        for col in range(len(index_matrix)[row]):"""
+    if index_matrix[-1][0]>= consts.BOARD_ROWS or index_matrix[-1][1]>= consts.BOARD_COLS:
+        return False
     return True
 
 

@@ -2,6 +2,8 @@ import pygame
 import random
 from consts import *
 import Game_field
+import soldier
+from flag.flag.soldier import soldier_img
 
 pygame.init()
 
@@ -9,12 +11,10 @@ screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
 
 def drow_soldier(soldiers_index):
-    soldier_img = pygame.transform.scale(pygame.image.load("bin/soldier.png"),
-                                         (FLAG_COLS * CELL_SIZE, FLAG_ROWS * CELL_SIZE))
     soldier_y = soldiers_index[0] * CELL_SIZE
     soldier_x = soldiers_index[1] * CELL_SIZE
-    rect = soldier_img.get_rect(topleft=(soldier_x, soldier_y))
-    screen.blit(soldier_img, rect)
+    rect = soldier.soldier_img.get_rect(topleft=(soldier_x, soldier_y))
+    screen.blit(soldier.soldier_img, rect)
 
 
 def drow_night_soldier(soldiers_index):
@@ -26,7 +26,7 @@ def drow_night_soldier(soldiers_index):
     screen.blit(soldier_img, rect)
 
 
-#מיקומים רנדומלים לשיחים
+
 def grass_location(grass_img):
     grass_rect_list = []
     while len(grass_rect_list) < GRASS_COUNT:
@@ -40,7 +40,6 @@ def grass_location(grass_img):
     return grass_rect_list
 
 
-#מתודה לציור רנדומלי של שיחים
 def blit_grass(grass_list, grass_img):
     for rect in grass_list:
         screen.blit(grass_img, rect)
@@ -61,7 +60,6 @@ def run_screen():
     screen.fill(GREEN)
     # pygame.init()
     grass_img = pygame.transform.scale(pygame.image.load("bin/grass.png"), (50, 30))
-    # לעשות את הערכים בקבועים
     blit_grass(grass_location(grass_img), grass_img)
     drow_flag()
     drow_soldier([0,0])
@@ -74,8 +72,7 @@ def run_screen():
 
 
 def dark_screen_background():
-    # screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-    pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+   # pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     background_colour = 'black'
     screen.fill(background_colour)
     for i in range(BOARD_ROWS * CELL_SIZE):
@@ -91,20 +88,25 @@ def drow_mines(mine_index_list):
     imp = pygame.image.load("bin/mine.png")
     mine_img = pygame.transform.scale(imp, (MINE_COLS * CELL_SIZE, MINE_ROWS * CELL_SIZE))
     for index in mine_index_list:
-        mine_x = index[0] * CELL_SIZE
-        mine_y = index[1] * CELL_SIZE
+        mine_x = index[1]* CELL_SIZE
+        mine_y = index[0] * CELL_SIZE
         rect = mine_img.get_rect(topleft=(mine_x, mine_y))
         screen.blit(mine_img, rect)
 
 
-def run_dark_screen():
-
+def run_dark_screen(soldier_index):
     dark_screen_background()
     index_list = Game_field.mine_list#change!!!!
     drow_mines(index_list)
-    drow_soldier([0, 0])
+    drow_night_soldier(soldier_index)
+    drow_flag()
     pygame.display.flip()
 
+def move_soldier(this_rect,soldier_index):
+    soldier_x= soldier_index[0] * CELL_SIZE
+    soldier_y=soldier_index[1] * CELL_SIZE
+    rect=soldier_img.get_rect(topleft=(soldier_x,soldier_y))
+    screen.blit(screen,rect)
 """def is_pressed_enter():
     if keyboard.read_key() == key.:
 run_screen()
@@ -117,7 +119,7 @@ var = getkey()
 
 if var == keys.ENTER:
   print("You pressed enter")"""
-run_dark_screen()
+"""run_dark_screen()
 running = True
 # game loop
 while running:
@@ -130,4 +132,4 @@ while running:
        # Check for QUIT event
        if event.type == pygame.QUIT:
            running = False
-#vvbdb
+#vvbdb"""
