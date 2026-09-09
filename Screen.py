@@ -1,24 +1,7 @@
 import pygame
 import random
-import consts
+from consts import *
 import Game_field
-import keyboard
-
-
-BOARD_ROWS = 25
-BOARD_COLS = 50
-CELL_SIZE = 20  # pixels per cell
-WINDOW_WIDTH = BOARD_COLS * CELL_SIZE
-WINDOW_HEIGHT = BOARD_ROWS * CELL_SIZE
-GRASS_COUNT = 20
-FLAG_ROWS = 3
-FLAG_COLS = 4
-FLAG_INDEX = [BOARD_ROWS - FLAG_ROWS, BOARD_COLS - FLAG_COLS]
-MINES_COUNT = 20
-MINE_ROWS = 1
-MINE_COLS = 3
-SOLDIER_ROWS = 4
-SOLDIER_COLS = 2
 
 pygame.init()
 
@@ -26,7 +9,7 @@ screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
 
 def drow_soldier(soldiers_index):
-    soldier_img = pygame.transform.scale(pygame.image.load(r"C:\Users\jbt\PycharmProjects\flag\bin\soldier.png"),
+    soldier_img = pygame.transform.scale(pygame.image.load("bin/soldier.png"),
                                          (FLAG_COLS * CELL_SIZE, FLAG_ROWS * CELL_SIZE))
     soldier_y = soldiers_index[0] * CELL_SIZE
     soldier_x = soldiers_index[1] * CELL_SIZE
@@ -35,7 +18,7 @@ def drow_soldier(soldiers_index):
 
 
 def drow_night_soldier(soldiers_index):
-    soldier_img = pygame.transform.scale(pygame.image.load(r"C:\Users\jbt\PycharmProjects\flag\bin\soldier_night.png"),
+    soldier_img = pygame.transform.scale(pygame.image.load("bin/soldier_night.png"),
                                          (FLAG_COLS * CELL_SIZE, FLAG_ROWS * CELL_SIZE))
     soldier_y = soldiers_index[0] * CELL_SIZE
     soldier_x = soldiers_index[1] * CELL_SIZE
@@ -64,7 +47,7 @@ def blit_grass(grass_list, grass_img):
 
 
 def drow_flag():
-    imp = pygame.image.load(r"C:\Users\jbt\PycharmProjects\flag\bin\flag.png")
+    imp = pygame.image.load("bin/flag.png")
     flag_img = pygame.transform.scale(imp, (FLAG_COLS * CELL_SIZE, FLAG_ROWS * CELL_SIZE))
     flag_y = FLAG_INDEX[0] * CELL_SIZE
     flag_x = FLAG_INDEX[1] * CELL_SIZE
@@ -75,9 +58,9 @@ def drow_flag():
 
 def run_screen():
     # Fill the background color to the screen
-    screen.fill(consts.GREEN)
+    screen.fill(GREEN)
     # pygame.init()
-    grass_img = pygame.transform.scale(pygame.image.load(r"C:\Users\jbt\PycharmProjects\flag\bin\grass.png"), (50, 30))
+    grass_img = pygame.transform.scale(pygame.image.load("bin/grass.png"), (50, 30))
     # לעשות את הערכים בקבועים
     blit_grass(grass_location(grass_img), grass_img)
     drow_flag()
@@ -97,14 +80,15 @@ def dark_screen_background():
     screen.fill(background_colour)
     for i in range(BOARD_ROWS * CELL_SIZE):
         for j in range(BOARD_COLS * CELL_SIZE):
-            pygame.draw.line(screen, consts.GREEN, (i * CELL_SIZE, 0), (i * CELL_SIZE, BOARD_ROWS * CELL_SIZE), 1)
+            pygame.draw.line(screen, GREEN, (i * CELL_SIZE, 0), (i * CELL_SIZE, BOARD_ROWS * CELL_SIZE), 2)
         for j in range(BOARD_COLS * CELL_SIZE):
-            pygame.draw.line(screen, consts.GREEN, (0, j * CELL_SIZE), (BOARD_COLS * CELL_SIZE, j * CELL_SIZE), 1)
+            pygame.draw.line(screen, GREEN, (0, j * CELL_SIZE), (BOARD_COLS * CELL_SIZE, j * CELL_SIZE), 2)
     # return screen
 
 
 def drow_mines(mine_index_list):
-    imp = pygame.image.load(r"C:\Users\jbt\PycharmProjects\flag\bin\mine.png")
+    print(mine_index_list)
+    imp = pygame.image.load("bin/mine.png")
     mine_img = pygame.transform.scale(imp, (MINE_COLS * CELL_SIZE, MINE_ROWS * CELL_SIZE))
     for index in mine_index_list:
         mine_x = index[0] * CELL_SIZE
@@ -114,14 +98,14 @@ def drow_mines(mine_index_list):
 
 
 def run_dark_screen():
-    # screen=dark_screen_background()
+
     dark_screen_background()
-    index_list = [[0, 0], [5, 5], [7, 7], [10, 10], [20, 20]]#change!!!!
+    index_list = Game_field.mine_list#change!!!!
     drow_mines(index_list)
     drow_soldier([0, 0])
     pygame.display.flip()
 
-def is_pressed_enter():
+"""def is_pressed_enter():
     if keyboard.read_key() == key.:
 run_screen()
 # Variable to keep our game loop running
@@ -132,8 +116,9 @@ print("press enter")
 var = getkey()
 
 if var == keys.ENTER:
-  print("You pressed enter")
-
+  print("You pressed enter")"""
+run_dark_screen()
+running = True
 # game loop
 while running:
 

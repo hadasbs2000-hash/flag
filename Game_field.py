@@ -6,8 +6,8 @@ import random
 #import Screen
 import soldier
 from flag.flag.consts import MINE_ROWS, MINE_COLS
-
 field_grid=[]
+mine_list=[]
 flag_row = consts.BOARD_ROWS - consts.FLAG_ROWS
 flag_col = consts.BOARD_COLS - consts.FLAG_COLS
 
@@ -38,9 +38,12 @@ def check_random_mine(mine_index):
         return this_mine_list
     else:
         return []
+def crate_list(index):
+   global mine_list
+   mine_list.append(index)
 
 def random_mines_in_grid():
-    mines_list = []
+
     mines_count=0
     while mines_count<consts.MINES_COUNT:
         rnd_row=random.randint(0,consts.BOARD_ROWS-1)
@@ -48,14 +51,12 @@ def random_mines_in_grid():
         if field_grid[rnd_row][rnd_col]==consts.EMPTY:
             if [rnd_row,rnd_col] not in soldier.get_index_matrix([0,0]):
                 this_mine_list = check_random_mine([rnd_row,rnd_col])
-                if len(this_mine_list)>0 :#is not empty
-                        #mines_list.append([rnd_row,rnd_col])
-                        #field_grid[rnd_row][rnd_col]=consts.MINE
+                if len(this_mine_list)>0:
                         for index in  this_mine_list:
-                           mines_list.append(index)
+                           crate_list(index)
                            field_grid[index[0]][index[1]]=consts.MINE
                         mines_count+=1
-    #so it won't be out of range
+
 
 """    count=0
    
@@ -86,6 +87,8 @@ def create_grid():
     create_empty_grid()
     put_in_flag()
     random_mines_in_grid()
+
+create_grid()
 
 
 
