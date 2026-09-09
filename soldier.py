@@ -1,8 +1,13 @@
+import pygame.image
+
 import consts
+def create_soldier():
+    pygame.image.load("soldier.py")
+
 def get_index_matrix(index):
     matrix=[]
-    for row in range(consts.BOARD_ROWS):
-        for col in range(consts.BOARD_COLS):
+    for row in range(consts.SOLDIER_ROWS):
+        for col in range(consts.SOLDIER_COLS):
             matrix.append([index[0]+row,index[1]+col])
     return matrix
 
@@ -30,3 +35,4 @@ def get_body(index):
         for c in range(consts.SOLDIER_COLS):
             body_index.append([index[0] + r, index[1] + c])
     return body_index
+
